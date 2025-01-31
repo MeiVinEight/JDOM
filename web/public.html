@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- DOMjudge version 8.3.1 -->
+		<meta charset="utf-8">
+		<title>Scoreboard TEST2 - DOMjudge</title>
+		<link rel="icon" href="/favicon.ico?v=8.3.1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="stylesheet" href="/css/bootstrap.min.css?v=8.3.1">
+		<link rel="stylesheet" href="/css/fontawesome-all.min.css?v=8.3.1">
+		<script src="/js/jquery.min.js?v=8.3.1"></script>
+		<script src="/js/jquery.debounce.min.js?v=8.3.1"></script>
+		<script src="/js/bootstrap.bundle.min.js?v=8.3.1"></script>
+
+		<script src="/js/domjudge.js?v=8.3.1"></script>
+		<link rel="stylesheet" href="/style_domjudge.css?v=8.3.1">
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand hidden-sm-down" href="/public">DOMjudge</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuDefault"
+						aria-controls="menuDefault" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+
+				<div class="collapse navbar-collapse" id="menuDefault">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link active"
+							   href="/public"><i class="fas fa-list-ol"></i> Scoreboard</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"
+							   href="/public/problems">
+								<i class="fas fa-book-open"></i> Problemset
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/team">
+								<i class="fas fa-arrow-right"></i> Team
+							</a>
+						</li>
+
+					</ul>
+
+					<a class="btn btn-info btn-sm me-2" href="/logout"
+					>
+						<i class="fas fa-sign-out-alt"></i> Logout
+					</a>
+
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownContests" role="button"
+							   data-bs-toggle="dropdown"
+							   aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-trophy"></i>
+							</a>
+							<div id="change-contest" class="dropdown-menu scrollable-menu" aria-labelledby="navbarDropdown"
+								 data-current-contest="5">
+								<a class="dropdown-item disabled" href="#">Change Contest</a>
+							</div>
+						</li>
+					</ul>
+
+					<div class="navbar-text" style="white-space:nowrap;">
+                        <span style="padding-left: 10px;">
+                            <i class="fas fa-clock loading-indicator"></i>
+                        </span>
+						<span id="timeleft">345d 5:42:15</span>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="progress" style="margin-top:-9px; height: 10px;" data-progress-bar>
+			<div id="contest-progress" class="progress-bar" role="progressbar" style="width: 0;"
+				 aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+
+					<div data-ajax-refresh-target data-ajax-refresh-after="initializeScoreboard" class="mt-3">
+
+
+						<div class="card">
+							<div class="card-header" style="font-family: Roboto, sans-serif; display: flex;">
+								<span style="font-weight: bold;">TEST2</span>
+								<span id="contesttimer">
+                            	</span>
+							</div>
+						</div>
+						<br/>
+						<table class="scoreboard center ">
+
+							<colgroup>
+								<col id="scorerank"/>
+								<col id="scoreflags"/>
+								<col id="scoreteamname"/>
+							</colgroup>
+							<colgroup>
+								<col id="scoresolv"/>
+								<col id="scoretotal"/>
+							</colgroup>
+							<colgroup>
+								<col class="scoreprob"/>
+								<col class="scoreprob"/>
+								<col class="scoreprob"/>
+							</colgroup>
+
+
+							<thead>
+								<tr id="scoreheader" class="scoreheader" data-static="">
+									<th title="rank" scope="col">rank</th>
+									<th title="team name" scope="col" colspan="2">team</th>
+									<th title="# solved / penalty time" colspan="2" scope="col">score</th>
+									<!--<th title="problem AAA" scope="col">
+										<a target="_self">
+											<span class="badge problem-badge"
+												  style="background-color: #ffffff; border: 1px solid #bfbfbf"><span
+												style="color: #000000;">A</span>
+											</span>
+										</a>
+									</th>
+									<th title="problem B" scope="col">
+										<a target="_self">
+											<span class="badge problem-badge"
+												  style="background-color: #ffffff; border: 1px solid #bfbfbf"><span
+												style="color: #000000;">B</span>
+											</span>
+										</a>
+									</th>
+									<th title="problem C" scope="col">
+										<a target="_self">
+											<span class="badge problem-badge"
+												  style="background-color: #ffffff; border: 1px solid #bfbfbf">
+												<span style="color: #000000;">C</span>
+											</span>
+										</a>
+									</th>-->
+								</tr>
+							</thead>
+							<tbody>
+
+
+								<tr class="sortorderswitch" id="team:2">
+									<td class="scorepl ">
+										1
+									</td>
+									<td class="scoreaf">
+									</td>
+									<td class="scoretn cl_33cc44" title="夏雨小饼干2号">
+										<a data-ajax-modal href="/public/team/2">
+											<span class="forceWidth">
+												夏雨小饼干2号
+											</span>
+											<span class="univ forceWidth">
+											</span>
+										</a>
+									</td>
+									<td class="scorenc">1</td>
+									<td class="scorett">38572</td>
+
+
+									<td class="score_cell">
+									</td>
+
+
+									<td class="score_cell">
+										<a>
+											<div class="score_incorrect">
+												&nbsp;
+												<span>
+												1 try
+												</span>
+											</div>
+										</a>
+									</td>
+
+
+									<td class="score_cell">
+										<a>
+											<div class="score_correct score_first">
+												28332 <span>
+                                                                                    1 try
+                                                                            </span>
+											</div>
+										</a>
+									</td>
+								</tr>
+
+								<tr style="border-top: 2px solid black;">
+									<td class="scoresummary" title="Summary" colspan="3">Summary</td>
+									<td title="total solved" class="scorenc">
+										1
+									</td>
+									<td></td>
+									<td style="text-align: left;">
+										<a>
+											<i class="fas fa-thumbs-up fa-fw"></i>
+											<span class="submcorrect" style="font-size:90%;"
+												  title="number of accepted submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-thumbs-down fa-fw"></i>
+											<span class="submreject" style="font-size:90%;"
+												  title="number of rejected submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-question-circle fa-fw"></i>
+											<span class="submpend" style="font-size:90%;"
+												  title="number of pending submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-clock fa-fw"></i>
+											<span style="font-size:90%;" title="first solved">
+                                                            n/a
+                                                    </span>
+										</a>
+									</td>
+									<td style="text-align: left;">
+										<a>
+											<i class="fas fa-thumbs-up fa-fw"></i>
+											<span class="submcorrect" style="font-size:90%;"
+												  title="number of accepted submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-thumbs-down fa-fw"></i>
+											<span class="submreject" style="font-size:90%;"
+												  title="number of rejected submissions">
+                                1
+                            </span>
+											<br/>
+
+											<i class="fas fa-question-circle fa-fw"></i>
+											<span class="submpend" style="font-size:90%;"
+												  title="number of pending submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-clock fa-fw"></i>
+											<span style="font-size:90%;" title="first solved">
+                                                            n/a
+                                                    </span>
+										</a>
+									</td>
+									<td style="text-align: left;">
+										<a>
+											<i class="fas fa-thumbs-up fa-fw"></i>
+											<span class="submcorrect" style="font-size:90%;"
+												  title="number of accepted submissions">
+                                1
+                            </span>
+											<br/>
+
+											<i class="fas fa-thumbs-down fa-fw"></i>
+											<span class="submreject" style="font-size:90%;"
+												  title="number of rejected submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-question-circle fa-fw"></i>
+											<span class="submpend" style="font-size:90%;"
+												  title="number of pending submissions">
+                                0
+                            </span>
+											<br/>
+
+											<i class="fas fa-clock fa-fw"></i>
+											<span style="font-size:90%;" title="first solved">
+                                                            28332min
+                                                    </span>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+
+						<p><br/><br/></p>
+
+
+						<table id="cell_legend" class="scoreboard scorelegend ">
+							<thead>
+								<tr>
+									<th scope="col">Cell colours</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="score_first">
+									<td>Solved first</td>
+								</tr>
+								<tr class="score_correct">
+									<td>Solved</td>
+								</tr>
+								<tr class="score_incorrect">
+									<td>Tried, incorrect</td>
+								</tr>
+								<tr class="score_pending">
+									<td>Tried, pending</td>
+								</tr>
+								<tr class="score_neutral">
+									<td>Untried</td>
+								</tr>
+							</tbody>
+						</table>
+
+
+						<style>
+
+							.cl_FFFFFF
+							{
+								background-color: #FFFFFF;
+							}
+
+
+							.cl_FFFFFF .forceWidth.toolong:after
+							{
+								background: linear-gradient(to right,
+								rgba(255, 255, 255, 0) 0%,
+								rgba(255, 255, 255, 1) 96%);
+							}
+
+							.cl_33cc44
+							{
+								background-color: #33cc44;
+							}
+
+
+							.cl_33cc44 .forceWidth.toolong:after
+							{
+								background: linear-gradient(to right,
+								rgba(51, 204, 68, 0) 0%,
+								rgba(51, 204, 68, 1) 96%);
+							}
+						</style>
+						<script>
+							document.querySelectorAll(".forceWidth:not(.toolong)").forEach(el =>
+							{
+								if (el instanceof Element && el.scrollWidth > el.offsetWidth)
+								{
+									el.classList.add("toolong");
+								}
+							});
+						</script>
+
+
+						<p id="lastmod">
+							Last Update: Mon 20 Jan 2025 18:17:44 CST<br/>
+							using <a href="https://www.domjudge.org/" target="_top">DOMjudge</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var domjudge_base_url = "";
+			var markdownPreviewUrl = "/markdown-preview";
+			$(function ()
+			{
+				/* toggle refresh if set */
+				/*
+				$('#refresh-navitem').on('click', function ()
+				{
+					toggleRefresh('/public', 30, 1);
+				});
+				*/
+				/* Enable page refresh if set if wanted by the page, and wanted by the user */
+				// enableRefresh('/public', 30, 1);
+
+				initializeAjaxModals();
+			});
+		</script>
+		<script>
+			initFavouriteTeams();
+			pinScoreheader();
+
+
+			var scoreboardUrl = '/public';
+
+			$(function ()
+			{
+				window.initializeScoreboard = function ()
+				{
+					var $newProgress = $('[data-ajax-refresh-target] > .d-none > [data-progress-bar]');
+					if ($newProgress.length)
+					{
+						var $oldProgress = $('body > [data-progress-bar]');
+						$oldProgress.html($newProgress.children());
+						$newProgress.parent().remove();
+					}
+
+					initFavouriteTeams();
+					pinScoreheader();
+				};
+
+			});
+		</script>
+		<script src="/js/team-overview.js"></script>
+	</body>
+</html>

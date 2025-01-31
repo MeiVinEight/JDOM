@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  tomcat:
+    basedir: temporary
+    resource:
+      allow-caching: false
+spring:
+  datasource:
+    url: "jdbc:mysql://127.0.0.1:3306/domjudge"
+    username: domjudge
+    password: S5uKbMvP
+    name: "JDOM"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      file-size-threshold: 0B
+      location: temporary/

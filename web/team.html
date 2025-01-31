@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- DOMjudge version 8.4.0DEV/0cfe72c46 -->
+		<meta charset="utf-8">
+		<title> Treenity - DOMjudge
+		</title>
+		<link rel="icon" href="/favicon.ico?v=8.4.0DEV/0cfe72c46">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<link rel="stylesheet" href="/css/bootstrap.min.css?v=8.4.0DEV/0cfe72c46">
+		<link rel="stylesheet" href="/css/fontawesome-all.min.css?v=8.4.0DEV/0cfe72c46">
+		<script src="/js/jquery.min.js?v=8.4.0DEV/0cfe72c46"></script>
+		<script src="/js/jquery.debounce.min.js?v=8.4.0DEV/0cfe72c46"></script>
+		<script src="/js/bootstrap.bundle.min.js?v=8.4.0DEV/0cfe72c46"></script>
+
+		<script src="/js/domjudge.js?v=8.4.0DEV/0cfe72c46"></script>
+		<link rel="stylesheet" href="/style_domjudge.css?v=8.4.0DEV/0cfe72c46">
+
+
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+			<div class="container-fluid">
+				<a class="navbar-brand hidden-sm-down" href="/public">DOMjudge</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuDefault"
+						aria-controls="menuDefault" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+
+				<div class="collapse navbar-collapse" id="menuDefault">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link active"
+							   href="/public"><i class="fas fa-list-ol"></i> Scoreboard</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"
+							   href="/public/problems">
+								<i class="fas fa-book-open"></i> Problemset
+							</a>
+						</li>
+
+
+					</ul>
+
+					<a class="btn btn-info btn-sm me-2" href="/login">
+						<i class="fas fa-sign-in-alt"></i> Login
+					</a>
+
+					<ul class="navbar-nav">
+					</ul>
+
+					<div class="navbar-text" style="white-space:nowrap;">
+						<span style="padding-left: 10px;">
+							<i class="fas fa-clock loading-indicator"></i>
+						</span>
+						<span id="timeleft"></span>
+					</div>
+
+					<script>
+						var initial = 1737079517;
+						var localInitial = new Date().getTime();
+						var activatetime = 1543050000;
+						var starttime = 1543136400;
+						var endtime = 1543154400;
+						var clientOffset = localInitial - new Date(initial * 1000).getTime();
+						var timeleftelt = document.getElementById("timeleft");
+
+						setInterval(function ()
+						{
+							updateClock();
+						}, 1000);
+						updateClock();
+					</script>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="mt-3"></h1>
+					<div class="row">
+						<div class="col-lg-4">
+							<table class="table table-sm table-striped">
+								<tr>
+									<th>Name</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>Category</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>Affiliation</th>
+									<td></td>
+								</tr>
+								<tr>
+									<th>Country</th>
+									<td>
+									</td>
+								</tr>
+								<tr>
+									<th>Location</th>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var domjudge_base_url = "/";
+			var markdownPreviewUrl = "/markdown-preview";
+			$(function ()
+			{
+				/* toggle refresh if set */
+				/* Enable page refresh if set if wanted by the page, and wanted by the user */
+
+				initializeAjaxModals();
+			});
+		</script>
+		<script src="/js/team.js"></script>
+	</body>
+</html>

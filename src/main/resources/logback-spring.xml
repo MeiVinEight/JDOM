@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <contextName>JDOM</contextName>
+    <conversionRule conversionWord="LEVEL_COLOR" converterClass="org.mve.dom.logging.converter.LoggingLevel"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                [%d{HH:mm:ss}] [%LEVEL_COLOR(%level)] [%t] %msg\n
+            </pattern>
+        </layout>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <!--        <appender-ref ref="appLogAppender"/>-->
+    </root>
+</configuration>
